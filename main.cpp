@@ -7,7 +7,9 @@ void initializeInventory(std::vector<Inventory>& inv);
 void printMenu();
 void chooseOption(int menuChoice, std::vector<Inventory> inv);
 void displayInventory(const std::vector<Inventory> inv);
-
+void itemSearch(std::vector<Inventory> inv);
+void updateQuantity(std::vector<Inventory> inv);
+void updatePrice(std::vector<Inventory> inv);
 // Implementation of functions
 
 // Create some initial inventory items
@@ -35,6 +37,55 @@ void printMenu() {
     std::cout << "Enter your choice: ";
 }
 
+void itemSearch(std::vector<Inventory> inv) {
+	int searchID;
+	std::cout << "Enter the item ID to search for: ";
+	std::cin >> searchID;
+	for(auto item : inv) {
+	    if (item.getItemID() == searchID) {
+			std::cout << "Item found! Details:" << std::endl;
+            item.displayItemDetails();	
+			return;
+		}
+	}
+	std::cout << "Item " << searchID << " not found in the inventory.";
+	return;
+}
+
+void updateQuantity(std::vector<Inventory> inv) {
+	int searchID;
+	std::cout << "Enter item ID to update quantity:";
+    std::cin >> searchID;
+	for(auto item : inv) {
+		if(item.getItemID() == searchID) {
+			int newQuant;
+			std::cout << "Current quantity is " << item.getQuantity() << std::endl;
+			std::cout << "Enter new quantity: ";
+			std::cin >> newQuant;
+			item.setQuantity(newQuant);
+			std::cout << "Quantity is now " << item.getQuantity() << std::endl;
+			return;
+        }
+	}
+	std::cout << "Invalid item ID. Exiting program.";
+}
+void updatePrice(std::vector<Inventory> inv) {
+	int searchID;
+	std::cout << "Enter item ID to update price:";
+    std::cin >> searchID;
+	for(auto item : inv) {
+		if(item.getItemID() == searchID) {
+			int newPrice;
+			std::cout << "Current price is " << item.getPrice() << std::endl;
+			std::cout << "Enter new price: ";
+			std::cin >> newPrice;
+			item.setPrice(newPrice);
+			std::cout << "Price is now " << item.getPrice() << std::endl;
+			return;
+        }
+	}
+	std::cout << "Invalid item ID. Exiting program.";
+}
 // Function to perform actions based on user choice
 void chooseOption(std::vector<Inventory> inv) {
 	bool validChoice = false;
@@ -48,14 +99,17 @@ void chooseOption(std::vector<Inventory> inv) {
 				break;
 			case 2:
 				 // Add search functionality here
+				itemSearch(inv);
 				validChoice = true;
 				break;
 			case 3:
-				 // Add update quantity functionality here
+				// Add update quantity functionality here
+				updateQuantity(inv);
 				validChoice = true; 
 				break;
 			case 4:
-				 // Add update price functionality here
+				// Add update price functionality here
+				// updatePrice(inv);
 				validChoice = true;
 				break;
 			case 0:
@@ -77,6 +131,8 @@ void displayInventory(const std::vector<Inventory> inv)  {
    		std::cout << "---------------------------" << std::endl; 
 	}
 }
+
+
 
 // Main function
 int main() {
