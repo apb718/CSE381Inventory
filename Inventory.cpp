@@ -2,7 +2,7 @@
 #include "Inventory.h"
 #include <iostream>
 #include <iomanip>
-Inventory::Inventory(int id, const std::string& name, 
+Inventory::Inventory(int id, const std::string& name,
     int quantity, double price) {
     this->itemID = id;
     this->itemName = name;
@@ -55,6 +55,6 @@ void Inventory::displayItemDetails() const {
     std::cout << "Item ID: " << itemID << std::endl;
     std::cout << "Item Name: " << itemName << std::endl;
     std::cout << "Quantity: " << quantity << std::endl;
-    std::cout << "Price: $" << std::fixed << std::setprecision(2) 
+    std::cout << "Price: $" << std::fixed << std::setprecision(2)
         << price << std::endl;
 }

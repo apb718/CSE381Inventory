@@ -43,112 +43,107 @@ void itemSearch(std::vector<Inventory>& inv) {
     std::cout << "Enter the item ID to search for: ";
     std::cin >> searchID;
     std::cout << std::endl;
-    for(auto item : inv) {
-		if (item.getItemID() == searchID) {
+    for (auto item : inv) {
+        if (item.getItemID() == searchID) {
             std::cout << "Item found! Details:" << std::endl;
             item.displayItemDetails();
-			std::cout << std::endl;	
+            std::cout << std::endl;
             return;
         }
         }
-    std::cout << "Item " << searchID << " not found in the inventory." << std::endl;
-	std::cout << std::endl;
+    std::cout << "Item " << searchID << " not found in the inventory." <<
+    std::endl;
+    std::cout << std::endl;
     return;
 }
 
 bool updateQuantity(std::vector<Inventory>& inv) {
-	int searchID;
-	std::cout << "Enter item ID to update quantity: ";
+    int searchID;
+    std::cout << "Enter item ID to update quantity: ";
     std::cin >> searchID;
-	
-	for(auto &item : inv) {
-		if(item.getItemID() == searchID) {
-			int newQuant;
-			
-			std::cout << "Current quantity is " << item.getQuantity() << std::endl;
-			std::cout << "Enter new quantity: ";
-			std::cin >> newQuant;
-			item.setQuantity(newQuant);
-			std::cout << "Quantity is now " << item.getQuantity() << std::endl;
-			std::cout << std::endl;
-			return true;
+    for (auto &item : inv) {
+        if (item.getItemID() == searchID) {
+            int newQuant;
+            std::cout << "Current quantity is " << item.getQuantity()
+            << std::endl;
+            std::cout << "Enter new quantity: ";
+            std::cin >> newQuant;
+            item.setQuantity(newQuant);
+            std::cout << "Quantity is now " << item.getQuantity() << std::endl;
+            std::cout << std::endl;
+            return true;
         }
-	}
-	std::cout << std::endl;
-	std::cout << "Invalid item ID.  Exiting program." << std::endl;
-	std::cout << std::endl;
-	return false;
+    }
+    std::cout << std::endl;
+    std::cout << "Invalid item ID.  Exiting program." << std::endl;
+    std::cout << std::endl;
+    return false;
 }
 bool updatePrice(std::vector<Inventory>& inv) {
-	int searchID;
-	std::cout << "Enter item ID to update price: ";
+    int searchID;
+    std::cout << "Enter item ID to update price: ";
     std::cin >> searchID;
 
-	for(auto &item : inv) {
-		if(item.getItemID() == searchID) {
-			double newPrice;
-			std::cout << "Current price is " << item.getPrice() << std::endl;
-			std::cout << "Enter new price: ";
+    for (auto &item : inv) {
+        if (item.getItemID() == searchID) {
+            double newPrice;
+            std::cout << "Current price is " << item.getPrice() << std::endl;
+            std::cout << "Enter new price: ";
             std::cin >> newPrice;
-			item.setPrice(newPrice);
-			std::cout << "Price is now " << item.getPrice() << std::endl;
-			std::cout << std::endl;
-			return true;
+            item.setPrice(newPrice);
+            std::cout << "Price is now " << item.getPrice() << std::endl;
+            std::cout << std::endl;
+            return true;
         }
-	}
-	std::cout << std::endl;
-	std::cout << "Invalid item ID.  Exiting program." << std::endl;
-	std::cout << std::endl;
-	return false;
+    }
+    std::cout << std::endl;
+    std::cout << "Invalid item ID.  Exiting program." << std::endl;
+    std::cout << std::endl;
+    return false;
 }
 // Function to perform actions based on user choice
 bool chooseOption(std::vector<Inventory>& inv) {
-	
-	int choice;
-		
-	std::cin >> choice;
-	switch (choice) {
-		case 1:
-			displayInventory(inv);
-			// validChoice = true;
-			break;
-		case 2:
-				// Add search functionality here
-			itemSearch(inv);
-			// validChoice = true;
-			break;
-		case 3:
-			// Add update quantity functionality here
-			return updateQuantity(inv);
-			// validChoice = true; 
-			break;
-		case 4:
-			// Add update price functionality here
-			return updatePrice(inv);
-			// validChoice = true;
-			break;
-		case 0:
-			// std::cout << "Exiting the program. Goodbye!" << std::endl;
-			// validChoice = true;
-			return false;
-			break;
-		default:
-			std::cout << std::endl;
-			std::cout << "Invalid choice:  Try again." << std::endl;
-			std::cout << std::endl;
-			// return true;
-
-			break;
-	}
-	return true;
+    int choice;
+    std::cin >> choice;
+    switch (choice) {
+        case 1:
+            displayInventory(inv);
+            // validChoice = true;
+            break;
+        case 2:
+            // Add search functionality here
+            itemSearch(inv);
+            // validChoice = true;
+            break;
+        case 3:
+            // Add update quantity functionality here
+            return updateQuantity(inv);
+            // validChoice = true;
+            break;
+        case 4:
+            // Add update price functionality here
+            return updatePrice(inv);
+            // validChoice = true;
+        case 0:
+            // std::cout << "Exiting the program. Goodbye!" << std::endl;
+            // validChoice = true;
+            return false;
+        default:
+            std::cout << std::endl;
+            std::cout << "Invalid choice:  Try again." << std::endl;
+            std::cout << std::endl;
+            break;
+    }
+    return true;
 }
 
 // Function to display inventory
 void displayInventory(const std::vector<Inventory>& inv)  {
-	for(const auto &item : inv) {
-		item.displayItemDetails();
-   		std::cout << "---------------------------" << std::endl; 
-	}
+    for (const auto &item : inv) {
+        item.displayItemDetails();
+        std::cout << "---------------------------"
+        << std::endl;
+    }
 }
 
 
@@ -161,11 +156,10 @@ int main() {
     initializeInventory(inventory);
     // Get user choice and perform actions
     bool keepLooping = true;
-	while(keepLooping) {
-		printMenu();
-		keepLooping = chooseOption(inventory);
-	}
-	
+    while (keepLooping) {
+        printMenu();
+        keepLooping = chooseOption(inventory);
+    }
     return 0;
 }
 
